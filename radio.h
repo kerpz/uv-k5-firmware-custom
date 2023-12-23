@@ -129,9 +129,11 @@ typedef struct VFO_Info_t
 
 	uint8_t        Compander;
 
+#ifdef ENABLE_DEVIATION
 	uint8_t        DeviationFM;
 	uint8_t        DeviationAM;
 	uint8_t        DeviationSSB;
+#endif
 
 	char           Name[16];
 } VFO_Info_t;
