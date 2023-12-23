@@ -27,7 +27,7 @@ ENABLE_BIG_FREQ               ?= 1
 ENABLE_SMALL_BOLD             ?= 1
 ENABLE_KEEP_MEM_NAME          ?= 1
 ENABLE_WIDE_RX                ?= 1
-ENABLE_TX_WHEN_AM             ?= 0
+ENABLE_TX_WHEN_AM             ?= 1
 ENABLE_F_CAL_MENU             ?= 0
 ENABLE_CTCSS_TAIL_PHASE_SHIFT ?= 0
 ENABLE_BOOT_BEEPS             ?= 0
@@ -45,6 +45,7 @@ ENABLE_REDUCE_LOW_MID_TX_POWER?= 0
 ENABLE_BYP_RAW_DEMODULATORS   ?= 0
 ENABLE_BLMIN_TMP_OFF          ?= 0
 ENABLE_SCAN_RANGES            ?= 1
+ENABLE_DEVIATION              ?= 1
 
 # ---- DEBUGGING ----
 ENABLE_AM_FIX_SHOW_DATA       ?= 0
@@ -198,7 +199,7 @@ endif
 OBJCOPY = arm-none-eabi-objcopy
 SIZE = arm-none-eabi-size
 
-AUTHOR_STRING ?= EGZUMER
+AUTHOR_STRING ?= DX1ARM
 # the user might not have/want git installed
 # can set own version string here (max 7 chars)
 ifneq (, $(shell $(WHERE) git))
@@ -363,6 +364,9 @@ ifeq ($(ENABLE_AGC_SHOW_DATA),1)
 endif
 ifeq ($(ENABLE_FLASHLIGHT),1)
 	CFLAGS  += -DENABLE_FLASHLIGHT
+endif
+ifeq ($(ENABLE_DEVIATION),1)
+	CFLAGS  += -DENABLE_DEVIATION
 endif
 
 LDFLAGS =
